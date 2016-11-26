@@ -1,0 +1,31 @@
+ How do I embed a function inside a function?
+Let's assume that you are given a question like this:
+''Write a function that accepts two numbers a and b as function parameters, and returns True if
+the sum of the two numbers is an even number, False otherwise.''
+Now, you could easily solve this problem with just one function as shown below:
+def test_even (a, b):
+    # calculate the sum of the two numbers
+    my_sum = a + b
+    # then check if the sum is an even number or not
+    if my_sum % 2 == 0:
+        return True
+    else:
+        return False
+However, let's assume that you want to solve this problem by writing more than one function. Let's say that you would like to first find the sum of the  two numbers and then call a separate function that just checks whether or not a number is even. But since, we will test your solution of the problem with the first function that occurs in your code, you will have to embed your other helper functions inside the first function as shown below: Note that this requirement (embedding helper functions inside the first function) is due to the restriction of the automatic grader and it does not apply to your IDLE or other Python environments. 
+def embedded_function(a, b):
+    # first find the sum of the two numbers
+    my_sum = a + b
+
+    # write a function that accepts a number as parameter and
+    # returns True or False
+    def lets_test_for_even(n):
+        if n % 2 == 0:
+            return True
+        else:
+            return False
+
+    # Now here is the important part!
+    # you need to call your inner function from within the outer function
+    my_result = lets_test_for_even(my_sum) 
+    # Now return the result
+    return my_result
